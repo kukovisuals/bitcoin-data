@@ -1,6 +1,7 @@
 export const fragGLSL = `
 
 uniform sampler2D uData;
+uniform float uTime;
 varying vec2 vUv;
 
 void main() {
@@ -17,7 +18,7 @@ void main() {
   }
   
   float dataIdx = cellIndex / 1000.0;    
-  float price = texture2D(uData, vec2(dataIdx, 0.5)).r;
+  float price = texture2D(uData, vec2(dataIdx + uTime * 0.1, 0.5)).r;
   
   float brightness = pow(price * 4.5, 9.4);
   
